@@ -1,2 +1,2 @@
 # Analiza---Spotify
-Spotify-analiza-historii-użytkownika-TSQL-PowerBI
+Analiza i wizualizacja historii użytkownika Spotify w TSQL i PowerBI
