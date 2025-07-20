@@ -1,0 +1,13 @@
+use test
+select artist_name, 
+count(case when skipped ='false' then 1 end) as liczba_odtworzeñ,
+count(case when skipped ='true' then 1 end) as liczba_pominiêæ,
+case when count(case when skipped ='false' then 1 end) < count(case when skipped ='true' then 1 end)
+then
+ABS(round(cast(count(case when skipped ='false' then 1 end)as float)
+/nullif(count(case when skipped ='true' then 1 end),0)*100,2) - 100)
+else
+round(cast(count(case when skipped ='true' then 1 end)as float)
+/nullif(count(case when skipped ='false' then 1 end),0)*100, 2) end as procent_pomijanych
+from spotify_history 
+group by artist_name having count(case when skipped ='true' then 1 end) >= 10 order by liczba_odtworzeñ;
